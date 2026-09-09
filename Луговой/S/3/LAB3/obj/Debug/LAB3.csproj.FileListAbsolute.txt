@@ -1,0 +1,9 @@
+Z:\04 -ИСП-4-27\Нестеренко\Луговой\3\LAB3\bin\Debug\LAB3.exe.config
+Z:\04 -ИСП-4-27\Нестеренко\Луговой\3\LAB3\bin\Debug\LAB3.exe
+Z:\04 -ИСП-4-27\Нестеренко\Луговой\3\LAB3\bin\Debug\LAB3.pdb
+Z:\04 -ИСП-4-27\Нестеренко\Луговой\3\LAB3\obj\Debug\LAB3.csproj.AssemblyReference.cache
+Z:\04 -ИСП-4-27\Нестеренко\Луговой\3\LAB3\obj\Debug\LAB3.Properties.Resources.resources
+Z:\04 -ИСП-4-27\Нестеренко\Луговой\3\LAB3\obj\Debug\LAB3.csproj.GenerateResource.cache
+Z:\04 -ИСП-4-27\Нестеренко\Луговой\3\LAB3\obj\Debug\LAB3.csproj.CoreCompileInputs.cache
+Z:\04 -ИСП-4-27\Нестеренко\Луговой\3\LAB3\obj\Debug\LAB3.exe
+Z:\04 -ИСП-4-27\Нестеренко\Луговой\3\LAB3\obj\Debug\LAB3.pdb
