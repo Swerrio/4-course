@@ -1,0 +1,8 @@
+is_global = true
+build_property.RootNamespace = SimpleMultitaskingApplication
+build_property.ProjectDir = F:\Learning\4-course\Запорожец\1. Мультипоточность\Код\Задание 02. SimpleMultitaskingApplication\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.CsWinRTUseWindowsUIXamlProjections = false
+build_property.EffectiveAnalysisLevelStyle = 
+build_property.EnableCodeStyleSeverity = 
