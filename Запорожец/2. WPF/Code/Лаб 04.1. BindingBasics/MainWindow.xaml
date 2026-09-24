@@ -1,0 +1,34 @@
+﻿<Window x:Class="BindingBasics.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Привязка данных" Height="420" Width="520">
+    <StackPanel Margin="12">
+        <TextBlock Text="Задание 1. Неверные параметры привязки"
+                   FontWeight="Bold" Margin="0,0,0,4" />
+        <TextBlock TextWrapping="Wrap" Foreground="Gray" Margin="0,0,0,4"
+                   Text="У поля ниже указано несуществующее имя элемента и несуществующее свойство. Приложение запускается, поле остаётся пустым, а в окне «Вывод» среда выводит сообщения System.Windows.Data Error." />
+        <TextBox Text="{Binding ElementName=НетТакогоЭлемента, Path=НетТакогоСвойства}"
+                 Margin="0,0,0,12" />
+
+        <TextBlock Text="Задание 2. Момент обновления источника"
+                   FontWeight="Bold" Margin="0,0,0,4" />
+        <TextBlock TextWrapping="Wrap" Foreground="Gray" Margin="0,0,0,4"
+                   Text="Ползунок передаёт значение сразу, а текстовое поле — только после потери фокуса. Различие устраняет UpdateSourceTrigger=PropertyChanged." />
+        <TextBox x:Name="t1" Margin="0,0,0,4" />
+        <TextBox x:Name="t2" Margin="0,0,0,8"
+                 Text="{Binding ElementName=t1, Path=Text, UpdateSourceTrigger=PropertyChanged}" />
+        <Slider x:Name="slider1" Minimum="0" Maximum="100" />
+        <Slider x:Name="slider2" Minimum="0" Maximum="100" Margin="0,0,0,12"
+                Value="{Binding ElementName=slider1, Path=Value}" />
+
+        <TextBlock Text="Задание 3. Размер шрифта: ползунок, поле и текст"
+                   FontWeight="Bold" Margin="0,0,0,4" />
+        <Slider x:Name="SizeSlider" Minimum="8" Maximum="48" Value="16" />
+        <TextBox Width="60" HorizontalAlignment="Left" Margin="0,4"
+                 Text="{Binding ElementName=SizeSlider, Path=Value, Mode=TwoWay,
+                        UpdateSourceTrigger=PropertyChanged, StringFormat={}{0:F0}}" />
+        <TextBlock Text="Размер этого текста зависит от ползунка"
+                   FontSize="{Binding ElementName=SizeSlider, Path=Value}"
+                   TextWrapping="Wrap" />
+    </StackPanel>
+</Window>
