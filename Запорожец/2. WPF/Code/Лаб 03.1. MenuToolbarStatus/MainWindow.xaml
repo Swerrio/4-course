@@ -1,0 +1,62 @@
+﻿<Window x:Class="MenuToolbarStatus.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Меню, панель инструментов и строка состояния"
+        Height="300" Width="520">
+    <DockPanel>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="Файл">
+                <MenuItem Header="Закрыть" Click="CloseItem_Click"
+                          MouseEnter="Hint_MouseEnter" MouseLeave="Hint_MouseLeave"
+                          Tag="Закрыть окно приложения" />
+            </MenuItem>
+            <MenuItem Header="Вид">
+                <MenuItem Header="Белый фон" Click="WhiteItem_Click"
+                          MouseEnter="Hint_MouseEnter" MouseLeave="Hint_MouseLeave"
+                          Tag="Установить белый цвет фона окна" />
+                <MenuItem Header="Голубой фон" Click="BlueItem_Click"
+                          MouseEnter="Hint_MouseEnter" MouseLeave="Hint_MouseLeave"
+                          Tag="Установить голубой цвет фона окна" />
+                <MenuItem Header="Зелёный фон" Click="GreenItem_Click"
+                          MouseEnter="Hint_MouseEnter" MouseLeave="Hint_MouseLeave"
+                          Tag="Установить зелёный цвет фона окна" />
+            </MenuItem>
+            <MenuItem Header="Справка">
+                <MenuItem Header="О разработчике" Click="AboutItem_Click"
+                          MouseEnter="Hint_MouseEnter" MouseLeave="Hint_MouseLeave"
+                          Tag="Показать сведения о разработчике" />
+            </MenuItem>
+        </Menu>
+
+        <ToolBarTray DockPanel.Dock="Top">
+            <ToolBar>
+                <Button Content="Белый" Click="WhiteItem_Click"
+                        MouseEnter="Hint_MouseEnter" MouseLeave="Hint_MouseLeave"
+                        Tag="Белый цвет фона окна" />
+                <Button Content="Голубой" Click="BlueItem_Click"
+                        MouseEnter="Hint_MouseEnter" MouseLeave="Hint_MouseLeave"
+                        Tag="Голубой цвет фона окна" />
+                <Button Content="Зелёный" Click="GreenItem_Click"
+                        MouseEnter="Hint_MouseEnter" MouseLeave="Hint_MouseLeave"
+                        Tag="Зелёный цвет фона окна" />
+                <Separator />
+                <Button Content="О разработчике" Click="AboutItem_Click"
+                        MouseEnter="Hint_MouseEnter" MouseLeave="Hint_MouseLeave"
+                        Tag="Сведения о разработчике" />
+                <Button Content="Закрыть" Click="CloseItem_Click"
+                        MouseEnter="Hint_MouseEnter" MouseLeave="Hint_MouseLeave"
+                        Tag="Закрыть окно приложения" />
+            </ToolBar>
+        </ToolBarTray>
+
+        <StatusBar DockPanel.Dock="Bottom">
+            <StatusBarItem>
+                <TextBlock x:Name="StatusText" Text="Готово" />
+            </StatusBarItem>
+        </StatusBar>
+
+        <TextBlock Text="Наведите курсор на пункт меню или кнопку панели инструментов"
+                   HorizontalAlignment="Center" VerticalAlignment="Center"
+                   Foreground="Gray" />
+    </DockPanel>
+</Window>
