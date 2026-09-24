@@ -1,0 +1,38 @@
+﻿<Window x:Class="Pulsar.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Пульсар" Height="420" Width="420" Background="Black">
+    <Grid>
+        <Ellipse x:Name="Circle" Width="60" Height="60"
+                 HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Ellipse.Fill>
+                <RadialGradientBrush x:Name="Glow" GradientOrigin="0.5,0.5"
+                                     Center="0.5,0.5" RadiusX="0.5" RadiusY="0.5">
+                    <GradientStop x:Name="Inner" Color="White" Offset="0" />
+                    <GradientStop x:Name="Middle" Color="Gold" Offset="0.5" />
+                    <GradientStop x:Name="Outer" Color="OrangeRed" Offset="1" />
+                </RadialGradientBrush>
+            </Ellipse.Fill>
+            <Ellipse.Triggers>
+                <EventTrigger RoutedEvent="Ellipse.Loaded">
+                    <BeginStoryboard>
+                        <Storyboard RepeatBehavior="Forever" AutoReverse="True">
+                            <DoubleAnimation Storyboard.TargetName="Circle"
+                                             Storyboard.TargetProperty="Width"
+                                             From="60" To="280" Duration="0:0:1.5" />
+                            <DoubleAnimation Storyboard.TargetName="Circle"
+                                             Storyboard.TargetProperty="Height"
+                                             From="60" To="280" Duration="0:0:1.5" />
+                            <DoubleAnimation Storyboard.TargetName="Circle"
+                                             Storyboard.TargetProperty="Opacity"
+                                             From="1" To="0.35" Duration="0:0:1.5" />
+                            <ColorAnimation Storyboard.TargetName="Middle"
+                                            Storyboard.TargetProperty="Color"
+                                            From="Gold" To="DeepSkyBlue" Duration="0:0:1.5" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Ellipse.Triggers>
+        </Ellipse>
+    </Grid>
+</Window>

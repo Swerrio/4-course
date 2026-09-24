@@ -1,0 +1,74 @@
+﻿<Window x:Class="UiScaling.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Масштабирование интерфейса" Height="520" Width="720">
+    <!-- Задание 1: весь интерфейс масштабируется ползунком -->
+    <DockPanel>
+        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="8">
+            <TextBlock Text="Масштаб интерфейса:" VerticalAlignment="Center" />
+            <Slider x:Name="Scale" Width="220" Minimum="0.5" Maximum="2" Value="1"
+                    TickFrequency="0.1" IsSnapToTickEnabled="True" Margin="8,0" />
+            <TextBlock VerticalAlignment="Center"
+                       Text="{Binding ElementName=Scale, Path=Value, StringFormat={}{0:F1}}" />
+        </StackPanel>
+
+        <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+            <Border BorderBrush="Gray" BorderThickness="1" Margin="8" Padding="8"
+                    HorizontalAlignment="Left" VerticalAlignment="Top">
+                <Border.LayoutTransform>
+                    <ScaleTransform ScaleX="{Binding ElementName=Scale, Path=Value}"
+                                    ScaleY="{Binding ElementName=Scale, Path=Value}" />
+                </Border.LayoutTransform>
+
+                <StackPanel Width="420">
+                    <TextBlock Text="Карточка заказа" FontSize="16" FontWeight="Bold"
+                               Margin="0,0,0,8" />
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <TextBlock Grid.Row="0" Grid.Column="0" Text="Клиент" Margin="4" />
+                        <TextBox Grid.Row="0" Grid.Column="1" Margin="4" Text="Иванов И. И." />
+                        <TextBlock Grid.Row="1" Grid.Column="0" Text="Телефон" Margin="4" />
+                        <TextBox Grid.Row="1" Grid.Column="1" Margin="4" Text="+7 900 000-00-00" />
+                        <TextBlock Grid.Row="2" Grid.Column="0" Text="Товар" Margin="4" />
+                        <ComboBox Grid.Row="2" Grid.Column="1" Margin="4" SelectedIndex="0">
+                            <ComboBoxItem Content="Ноутбук" />
+                            <ComboBoxItem Content="Монитор" />
+                            <ComboBoxItem Content="Клавиатура" />
+                        </ComboBox>
+                        <TextBlock Grid.Row="3" Grid.Column="0" Text="Количество" Margin="4" />
+                        <Slider Grid.Row="3" Grid.Column="1" Margin="4" Minimum="1" Maximum="10"
+                                Value="2" TickFrequency="1" IsSnapToTickEnabled="True" />
+                    </Grid>
+
+                    <GroupBox Header="Доставка" Margin="0,8">
+                        <StackPanel>
+                            <RadioButton Content="Самовывоз" IsChecked="True" Margin="4" />
+                            <RadioButton Content="Курьером" Margin="4" />
+                            <CheckBox Content="Срочная доставка" Margin="4" />
+                        </StackPanel>
+                    </GroupBox>
+
+                    <ListBox Height="90" Margin="0,4">
+                        <ListBoxItem Content="Заказ №1 — оплачен" />
+                        <ListBoxItem Content="Заказ №2 — собирается" />
+                        <ListBoxItem Content="Заказ №3 — доставляется" />
+                    </ListBox>
+
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                        <Button Content="Сохранить" Margin="4" Padding="10,3" />
+                        <Button Content="Отмена" Margin="4" Padding="10,3" />
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+        </ScrollViewer>
+    </DockPanel>
+</Window>

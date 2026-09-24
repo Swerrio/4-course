@@ -1,0 +1,78 @@
+﻿<Window x:Class="LightAnimation.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Освещение шара" Height="520" Width="640">
+    <Window.Background>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+            <GradientStop Color="#202040" Offset="0" />
+            <GradientStop Color="#101020" Offset="1" />
+        </LinearGradientBrush>
+    </Window.Background>
+
+    <Canvas x:Name="Scene">
+        <!-- источник света -->
+        <Ellipse x:Name="Lamp" Canvas.Left="80" Canvas.Top="60" Width="60" Height="60">
+            <Ellipse.Fill>
+                <RadialGradientBrush>
+                    <GradientStop Color="White" Offset="0" />
+                    <GradientStop Color="#FFFFE080" Offset="0.4" />
+                    <GradientStop Color="#00FFE080" Offset="1" />
+                </RadialGradientBrush>
+            </Ellipse.Fill>
+            <Ellipse.RenderTransform>
+                <TranslateTransform x:Name="LampMove" />
+            </Ellipse.RenderTransform>
+        </Ellipse>
+
+        <!-- шар со световым пятном -->
+        <Ellipse Canvas.Left="200" Canvas.Top="140" Width="240" Height="240">
+            <Ellipse.Fill>
+                <RadialGradientBrush x:Name="BallBrush"
+                                     GradientOrigin="0.25,0.25" Center="0.5,0.5"
+                                     RadiusX="0.75" RadiusY="0.75">
+                    <GradientStop Color="White" Offset="0" />
+                    <GradientStop Color="#FF4080C0" Offset="0.45" />
+                    <GradientStop Color="#FF102040" Offset="1" />
+                </RadialGradientBrush>
+            </Ellipse.Fill>
+        </Ellipse>
+
+        <!-- отражение шара -->
+        <Ellipse x:Name="Reflection" Canvas.Left="200" Canvas.Top="390" Width="240" Height="70">
+            <Ellipse.Fill>
+                <RadialGradientBrush x:Name="ShadowBrush" GradientOrigin="0.5,0.5"
+                                     Center="0.5,0.5" RadiusX="0.5" RadiusY="0.5">
+                    <GradientStop Color="#804080C0" Offset="0" />
+                    <GradientStop Color="#00000000" Offset="1" />
+                </RadialGradientBrush>
+            </Ellipse.Fill>
+        </Ellipse>
+
+        <Canvas.Triggers>
+            <EventTrigger RoutedEvent="Canvas.Loaded">
+                <BeginStoryboard>
+                    <Storyboard RepeatBehavior="Forever" AutoReverse="True">
+                        <!-- движение источника света -->
+                        <DoubleAnimation Storyboard.TargetName="LampMove"
+                                         Storyboard.TargetProperty="X"
+                                         From="0" To="380" Duration="0:0:4" />
+                        <!-- световое пятно на шаре -->
+                        <PointAnimation Storyboard.TargetName="BallBrush"
+                                        Storyboard.TargetProperty="GradientOrigin"
+                                        From="0.2,0.25" To="0.8,0.25" Duration="0:0:4" />
+                        <PointAnimation Storyboard.TargetName="BallBrush"
+                                        Storyboard.TargetProperty="Center"
+                                        From="0.45,0.45" To="0.6,0.45" Duration="0:0:4" />
+                        <!-- отражение смещается вслед за светом -->
+                        <PointAnimation Storyboard.TargetName="ShadowBrush"
+                                        Storyboard.TargetProperty="GradientOrigin"
+                                        From="0.7,0.5" To="0.3,0.5" Duration="0:0:4" />
+                        <DoubleAnimation Storyboard.TargetName="Reflection"
+                                         Storyboard.TargetProperty="Opacity"
+                                         From="0.8" To="0.4" Duration="0:0:4" />
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger>
+        </Canvas.Triggers>
+    </Canvas>
+</Window>

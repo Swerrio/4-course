@@ -1,0 +1,12 @@
+﻿<Window x:Class="RunawayButton.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Убегающая кнопка" Height="360" Width="560">
+    <Canvas x:Name="Field" Background="White">
+        <TextBlock Canvas.Left="16" Canvas.Top="12" Foreground="Gray"
+                   Text="Наведите курсор на кнопку — она убежит" />
+        <Button x:Name="Runaway" Content="Поймай меня" Padding="12,6"
+                Canvas.Left="220" Canvas.Top="150"
+                MouseEnter="Runaway_MouseEnter" Click="Runaway_Click" />
+    </Canvas>
+</Window>

@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="300" viewBox="0 0 300 300">
+  <title>Главная дорога</title>
+  <polygon points="150,20 280,150 150,280 20,150" fill="#FFCC00" stroke="#FFFFFF" stroke-width="16"/>
+</svg>

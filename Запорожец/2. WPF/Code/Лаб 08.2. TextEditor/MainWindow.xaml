@@ -1,0 +1,371 @@
+﻿<Window x:Class="TextEditor.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Текстовый редактор" Height="620" Width="1120">
+    <!-- Задание 2: блоки расположены полукругом; активный блок плавно
+         перемещается в центр. Код на C# не используется. -->
+    <Canvas Background="White">
+        <TextBlock Canvas.Left="20" Canvas.Top="14" Foreground="Gray"
+                   Text="Щёлкните по текстовому полю — блок переместится в центр" />
+        <Border Canvas.Left="40" Canvas.Top="330" Width="260" Height="170"
+                Background="White" BorderBrush="SteelBlue" BorderThickness="1"
+                RenderTransformOrigin="0.5,0.5">
+            <Border.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform x:Name="Scale1" ScaleX="0.75" ScaleY="0.75" />
+                    <RotateTransform x:Name="Rotate1" Angle="-28" />
+                    <TranslateTransform x:Name="Move1" X="0" Y="0" />
+                </TransformGroup>
+            </Border.RenderTransform>
+
+            <Border.Triggers>
+                <EventTrigger RoutedEvent="UIElement.GotFocus">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetName="Scale1"
+                                             Storyboard.TargetProperty="ScaleX"
+                                             To="1.25" Duration="0:0:0.6" />
+                            <DoubleAnimation Storyboard.TargetName="Scale1"
+                                             Storyboard.TargetProperty="ScaleY"
+                                             To="1.25" Duration="0:0:0.6" />
+                            <DoubleAnimation Storyboard.TargetName="Rotate1"
+                                             Storyboard.TargetProperty="Angle"
+                                             To="0" Duration="0:0:0.6" />
+                            <DoubleAnimation Storyboard.TargetName="Move1"
+                                             Storyboard.TargetProperty="X"
+                                             To="250" Duration="0:0:0.6" />
+                            <DoubleAnimation Storyboard.TargetName="Move1"
+                                             Storyboard.TargetProperty="Y"
+                                             To="-230" Duration="0:0:0.6" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+
+                <EventTrigger RoutedEvent="UIElement.LostFocus">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetName="Scale1"
+                                             Storyboard.TargetProperty="ScaleX"
+                                             To="0.75" Duration="0:0:0.6" />
+                            <DoubleAnimation Storyboard.TargetName="Scale1"
+                                             Storyboard.TargetProperty="ScaleY"
+                                             To="0.75" Duration="0:0:0.6" />
+                            <DoubleAnimation Storyboard.TargetName="Rotate1"
+                                             Storyboard.TargetProperty="Angle"
+                                             To="-28" Duration="0:0:0.6" />
+                            <DoubleAnimation Storyboard.TargetName="Move1"
+                                             Storyboard.TargetProperty="X"
+                                             To="0" Duration="0:0:0.6" />
+                            <DoubleAnimation Storyboard.TargetName="Move1"
+                                             Storyboard.TargetProperty="Y"
+                                             To="0" Duration="0:0:0.6" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Border.Triggers>
+
+            <DockPanel Margin="6">
+                <StackPanel DockPanel.Dock="Top" Orientation="Horizontal"
+                            HorizontalAlignment="Center">
+                    <Button Content="Копировать" Command="ApplicationCommands.Copy"
+                            CommandTarget="{Binding ElementName=Editor1}" Margin="3" />
+                    <Button Content="Вырезать" Command="ApplicationCommands.Cut"
+                            CommandTarget="{Binding ElementName=Editor1}" Margin="3" />
+                    <Button Content="Вставить" Command="ApplicationCommands.Paste"
+                            CommandTarget="{Binding ElementName=Editor1}" Margin="3" />
+                </StackPanel>
+                <TextBox x:Name="Editor1" Margin="3" AcceptsReturn="True"
+                         TextWrapping="Wrap" VerticalScrollBarVisibility="Auto"
+                         Text="Текст №1&#x0a;RenderTransform.Angle&#x0a;RenderTransform.ScaleX&#x0a;RenderTransform.ScaleY" />
+            </DockPanel>
+        </Border>
+        <Border Canvas.Left="230" Canvas.Top="380" Width="260" Height="170"
+                Background="White" BorderBrush="SteelBlue" BorderThickness="1"
+                RenderTransformOrigin="0.5,0.5">
+            <Border.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform x:Name="Scale2" ScaleX="0.75" ScaleY="0.75" />
+                    <RotateTransform x:Name="Rotate2" Angle="-14" />
+                    <TranslateTransform x:Name="Move2" X="0" Y="0" />
+                </TransformGroup>
+            </Border.RenderTransform>
+
+            <Border.Triggers>
+                <EventTrigger RoutedEvent="UIElement.GotFocus">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetName="Scale2"
+                                             Storyboard.TargetProperty="ScaleX"
+                                             To="1.25" Duration="0:0:0.6" />
+                            <DoubleAnimation Storyboard.TargetName="Scale2"
+                                             Storyboard.TargetProperty="ScaleY"
+                                             To="1.25" Duration="0:0:0.6" />
+                            <DoubleAnimation Storyboard.TargetName="Rotate2"
+                                             Storyboard.TargetProperty="Angle"
+                                             To="0" Duration="0:0:0.6" />
+                            <DoubleAnimation Storyboard.TargetName="Move2"
+                                             Storyboard.TargetProperty="X"
+                                             To="60" Duration="0:0:0.6" />
+                            <DoubleAnimation Storyboard.TargetName="Move2"
+                                             Storyboard.TargetProperty="Y"
+                                             To="-280" Duration="0:0:0.6" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+
+                <EventTrigger RoutedEvent="UIElement.LostFocus">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetName="Scale2"
+                                             Storyboard.TargetProperty="ScaleX"
+                                             To="0.75" Duration="0:0:0.6" />
+                            <DoubleAnimation Storyboard.TargetName="Scale2"
+                                             Storyboard.TargetProperty="ScaleY"
+                                             To="0.75" Duration="0:0:0.6" />
+                            <DoubleAnimation Storyboard.TargetName="Rotate2"
+                                             Storyboard.TargetProperty="Angle"
+                                             To="-14" Duration="0:0:0.6" />
+                            <DoubleAnimation Storyboard.TargetName="Move2"
+                                             Storyboard.TargetProperty="X"
+                                             To="0" Duration="0:0:0.6" />
+                            <DoubleAnimation Storyboard.TargetName="Move2"
+                                             Storyboard.TargetProperty="Y"
+                                             To="0" Duration="0:0:0.6" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Border.Triggers>
+
+            <DockPanel Margin="6">
+                <StackPanel DockPanel.Dock="Top" Orientation="Horizontal"
+                            HorizontalAlignment="Center">
+                    <Button Content="Копировать" Command="ApplicationCommands.Copy"
+                            CommandTarget="{Binding ElementName=Editor2}" Margin="3" />
+                    <Button Content="Вырезать" Command="ApplicationCommands.Cut"
+                            CommandTarget="{Binding ElementName=Editor2}" Margin="3" />
+                    <Button Content="Вставить" Command="ApplicationCommands.Paste"
+                            CommandTarget="{Binding ElementName=Editor2}" Margin="3" />
+                </StackPanel>
+                <TextBox x:Name="Editor2" Margin="3" AcceptsReturn="True"
+                         TextWrapping="Wrap" VerticalScrollBarVisibility="Auto"
+                         Text="Текст №2&#x0a;RenderTransform.Angle&#x0a;RenderTransform.ScaleX&#x0a;RenderTransform.ScaleY" />
+            </DockPanel>
+        </Border>
+        <Border Canvas.Left="430" Canvas.Top="395" Width="260" Height="170"
+                Background="White" BorderBrush="SteelBlue" BorderThickness="1"
+                RenderTransformOrigin="0.5,0.5">
+            <Border.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform x:Name="Scale3" ScaleX="0.75" ScaleY="0.75" />
+                    <RotateTransform x:Name="Rotate3" Angle="0" />
+                    <TranslateTransform x:Name="Move3" X="0" Y="0" />
+                </TransformGroup>
+            </Border.RenderTransform>
+
+            <Border.Triggers>
+                <EventTrigger RoutedEvent="UIElement.GotFocus">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetName="Scale3"
+                                             Storyboard.TargetProperty="ScaleX"
+                                             To="1.25" Duration="0:0:0.6" />
+                            <DoubleAnimation Storyboard.TargetName="Scale3"
+                                             Storyboard.TargetProperty="ScaleY"
+                                             To="1.25" Duration="0:0:0.6" />
+                            <DoubleAnimation Storyboard.TargetName="Rotate3"
+                                             Storyboard.TargetProperty="Angle"
+                                             To="0" Duration="0:0:0.6" />
+                            <DoubleAnimation Storyboard.TargetName="Move3"
+                                             Storyboard.TargetProperty="X"
+                                             To="-140" Duration="0:0:0.6" />
+                            <DoubleAnimation Storyboard.TargetName="Move3"
+                                             Storyboard.TargetProperty="Y"
+                                             To="-295" Duration="0:0:0.6" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+
+                <EventTrigger RoutedEvent="UIElement.LostFocus">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetName="Scale3"
+                                             Storyboard.TargetProperty="ScaleX"
+                                             To="0.75" Duration="0:0:0.6" />
+                            <DoubleAnimation Storyboard.TargetName="Scale3"
+                                             Storyboard.TargetProperty="ScaleY"
+                                             To="0.75" Duration="0:0:0.6" />
+                            <DoubleAnimation Storyboard.TargetName="Rotate3"
+                                             Storyboard.TargetProperty="Angle"
+                                             To="0" Duration="0:0:0.6" />
+                            <DoubleAnimation Storyboard.TargetName="Move3"
+                                             Storyboard.TargetProperty="X"
+                                             To="0" Duration="0:0:0.6" />
+                            <DoubleAnimation Storyboard.TargetName="Move3"
+                                             Storyboard.TargetProperty="Y"
+                                             To="0" Duration="0:0:0.6" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Border.Triggers>
+
+            <DockPanel Margin="6">
+                <StackPanel DockPanel.Dock="Top" Orientation="Horizontal"
+                            HorizontalAlignment="Center">
+                    <Button Content="Копировать" Command="ApplicationCommands.Copy"
+                            CommandTarget="{Binding ElementName=Editor3}" Margin="3" />
+                    <Button Content="Вырезать" Command="ApplicationCommands.Cut"
+                            CommandTarget="{Binding ElementName=Editor3}" Margin="3" />
+                    <Button Content="Вставить" Command="ApplicationCommands.Paste"
+                            CommandTarget="{Binding ElementName=Editor3}" Margin="3" />
+                </StackPanel>
+                <TextBox x:Name="Editor3" Margin="3" AcceptsReturn="True"
+                         TextWrapping="Wrap" VerticalScrollBarVisibility="Auto"
+                         Text="Текст №3&#x0a;RenderTransform.Angle&#x0a;RenderTransform.ScaleX&#x0a;RenderTransform.ScaleY" />
+            </DockPanel>
+        </Border>
+        <Border Canvas.Left="630" Canvas.Top="380" Width="260" Height="170"
+                Background="White" BorderBrush="SteelBlue" BorderThickness="1"
+                RenderTransformOrigin="0.5,0.5">
+            <Border.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform x:Name="Scale4" ScaleX="0.75" ScaleY="0.75" />
+                    <RotateTransform x:Name="Rotate4" Angle="14" />
+                    <TranslateTransform x:Name="Move4" X="0" Y="0" />
+                </TransformGroup>
+            </Border.RenderTransform>
+
+            <Border.Triggers>
+                <EventTrigger RoutedEvent="UIElement.GotFocus">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetName="Scale4"
+                                             Storyboard.TargetProperty="ScaleX"
+                                             To="1.25" Duration="0:0:0.6" />
+                            <DoubleAnimation Storyboard.TargetName="Scale4"
+                                             Storyboard.TargetProperty="ScaleY"
+                                             To="1.25" Duration="0:0:0.6" />
+                            <DoubleAnimation Storyboard.TargetName="Rotate4"
+                                             Storyboard.TargetProperty="Angle"
+                                             To="0" Duration="0:0:0.6" />
+                            <DoubleAnimation Storyboard.TargetName="Move4"
+                                             Storyboard.TargetProperty="X"
+                                             To="-340" Duration="0:0:0.6" />
+                            <DoubleAnimation Storyboard.TargetName="Move4"
+                                             Storyboard.TargetProperty="Y"
+                                             To="-280" Duration="0:0:0.6" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+
+                <EventTrigger RoutedEvent="UIElement.LostFocus">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetName="Scale4"
+                                             Storyboard.TargetProperty="ScaleX"
+                                             To="0.75" Duration="0:0:0.6" />
+                            <DoubleAnimation Storyboard.TargetName="Scale4"
+                                             Storyboard.TargetProperty="ScaleY"
+                                             To="0.75" Duration="0:0:0.6" />
+                            <DoubleAnimation Storyboard.TargetName="Rotate4"
+                                             Storyboard.TargetProperty="Angle"
+                                             To="14" Duration="0:0:0.6" />
+                            <DoubleAnimation Storyboard.TargetName="Move4"
+                                             Storyboard.TargetProperty="X"
+                                             To="0" Duration="0:0:0.6" />
+                            <DoubleAnimation Storyboard.TargetName="Move4"
+                                             Storyboard.TargetProperty="Y"
+                                             To="0" Duration="0:0:0.6" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Border.Triggers>
+
+            <DockPanel Margin="6">
+                <StackPanel DockPanel.Dock="Top" Orientation="Horizontal"
+                            HorizontalAlignment="Center">
+                    <Button Content="Копировать" Command="ApplicationCommands.Copy"
+                            CommandTarget="{Binding ElementName=Editor4}" Margin="3" />
+                    <Button Content="Вырезать" Command="ApplicationCommands.Cut"
+                            CommandTarget="{Binding ElementName=Editor4}" Margin="3" />
+                    <Button Content="Вставить" Command="ApplicationCommands.Paste"
+                            CommandTarget="{Binding ElementName=Editor4}" Margin="3" />
+                </StackPanel>
+                <TextBox x:Name="Editor4" Margin="3" AcceptsReturn="True"
+                         TextWrapping="Wrap" VerticalScrollBarVisibility="Auto"
+                         Text="Текст №4&#x0a;RenderTransform.Angle&#x0a;RenderTransform.ScaleX&#x0a;RenderTransform.ScaleY" />
+            </DockPanel>
+        </Border>
+        <Border Canvas.Left="820" Canvas.Top="330" Width="260" Height="170"
+                Background="White" BorderBrush="SteelBlue" BorderThickness="1"
+                RenderTransformOrigin="0.5,0.5">
+            <Border.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform x:Name="Scale5" ScaleX="0.75" ScaleY="0.75" />
+                    <RotateTransform x:Name="Rotate5" Angle="28" />
+                    <TranslateTransform x:Name="Move5" X="0" Y="0" />
+                </TransformGroup>
+            </Border.RenderTransform>
+
+            <Border.Triggers>
+                <EventTrigger RoutedEvent="UIElement.GotFocus">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetName="Scale5"
+                                             Storyboard.TargetProperty="ScaleX"
+                                             To="1.25" Duration="0:0:0.6" />
+                            <DoubleAnimation Storyboard.TargetName="Scale5"
+                                             Storyboard.TargetProperty="ScaleY"
+                                             To="1.25" Duration="0:0:0.6" />
+                            <DoubleAnimation Storyboard.TargetName="Rotate5"
+                                             Storyboard.TargetProperty="Angle"
+                                             To="0" Duration="0:0:0.6" />
+                            <DoubleAnimation Storyboard.TargetName="Move5"
+                                             Storyboard.TargetProperty="X"
+                                             To="-530" Duration="0:0:0.6" />
+                            <DoubleAnimation Storyboard.TargetName="Move5"
+                                             Storyboard.TargetProperty="Y"
+                                             To="-230" Duration="0:0:0.6" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+
+                <EventTrigger RoutedEvent="UIElement.LostFocus">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetName="Scale5"
+                                             Storyboard.TargetProperty="ScaleX"
+                                             To="0.75" Duration="0:0:0.6" />
+                            <DoubleAnimation Storyboard.TargetName="Scale5"
+                                             Storyboard.TargetProperty="ScaleY"
+                                             To="0.75" Duration="0:0:0.6" />
+                            <DoubleAnimation Storyboard.TargetName="Rotate5"
+                                             Storyboard.TargetProperty="Angle"
+                                             To="28" Duration="0:0:0.6" />
+                            <DoubleAnimation Storyboard.TargetName="Move5"
+                                             Storyboard.TargetProperty="X"
+                                             To="0" Duration="0:0:0.6" />
+                            <DoubleAnimation Storyboard.TargetName="Move5"
+                                             Storyboard.TargetProperty="Y"
+                                             To="0" Duration="0:0:0.6" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Border.Triggers>
+
+            <DockPanel Margin="6">
+                <StackPanel DockPanel.Dock="Top" Orientation="Horizontal"
+                            HorizontalAlignment="Center">
+                    <Button Content="Копировать" Command="ApplicationCommands.Copy"
+                            CommandTarget="{Binding ElementName=Editor5}" Margin="3" />
+                    <Button Content="Вырезать" Command="ApplicationCommands.Cut"
+                            CommandTarget="{Binding ElementName=Editor5}" Margin="3" />
+                    <Button Content="Вставить" Command="ApplicationCommands.Paste"
+                            CommandTarget="{Binding ElementName=Editor5}" Margin="3" />
+                </StackPanel>
+                <TextBox x:Name="Editor5" Margin="3" AcceptsReturn="True"
+                         TextWrapping="Wrap" VerticalScrollBarVisibility="Auto"
+                         Text="Текст №5&#x0a;RenderTransform.Angle&#x0a;RenderTransform.ScaleX&#x0a;RenderTransform.ScaleY" />
+            </DockPanel>
+        </Border>
+    </Canvas>
+</Window>

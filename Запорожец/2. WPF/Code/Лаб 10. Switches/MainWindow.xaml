@@ -1,0 +1,134 @@
+﻿<Window x:Class="Switches.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Переключатели" Height="420" Width="720" Background="White">
+    <!-- Задание 2: переключатели масштабируются вместе с окном (Viewbox),
+         увеличиваются при наведении и поворачиваются на 20° по клику -->
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Viewbox Grid.Column="0" Margin="12" Stretch="Uniform">
+            <Canvas Width="200" Height="200" Background="Transparent"
+                    RenderTransformOrigin="0.5,0.5"
+                    MouseLeftButtonDown="Switch_MouseDown"
+                    MouseEnter="Switch_MouseEnter" MouseLeave="Switch_MouseLeave">
+                <Canvas.RenderTransform>
+                    <ScaleTransform x:Name="Zoom1" ScaleX="1" ScaleY="1" />
+                </Canvas.RenderTransform>
+
+                <Path Stroke="Gray" StrokeThickness="3"
+                      Data="M 100,12 L 176,56 L 176,144 L 100,188 L 24,144 L 24,56 Z">
+                    <Path.Fill>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                            <GradientStop Color="White" Offset="0" />
+                            <GradientStop Color="#FFBFBFBF" Offset="1" />
+                        </LinearGradientBrush>
+                    </Path.Fill>
+                </Path>
+
+                <Ellipse Canvas.Left="50" Canvas.Top="50" Width="100" Height="100">
+                    <Ellipse.Fill>
+                        <RadialGradientBrush>
+                            <GradientStop Color="#FFF0F0F0" Offset="0" />
+                            <GradientStop Color="#FF909090" Offset="1" />
+                        </RadialGradientBrush>
+                    </Ellipse.Fill>
+                </Ellipse>
+
+                <Grid Canvas.Left="35" Canvas.Top="86" Width="130" Height="28"
+                      RenderTransformOrigin="0.5,0.5">
+                    <Grid.RenderTransform>
+                        <RotateTransform x:Name="Turn1" Angle="0" />
+                    </Grid.RenderTransform>
+                    <Rectangle Fill="LightGreen" Stroke="Green" StrokeThickness="2"
+                               RadiusX="5" RadiusY="5" />
+                    <Rectangle Width="26" Height="6" Fill="DarkRed"
+                               HorizontalAlignment="Left" Margin="8,0,0,0" />
+                </Grid>
+            </Canvas>
+        </Viewbox>
+        <Viewbox Grid.Column="1" Margin="12" Stretch="Uniform">
+            <Canvas Width="200" Height="200" Background="Transparent"
+                    RenderTransformOrigin="0.5,0.5"
+                    MouseLeftButtonDown="Switch_MouseDown"
+                    MouseEnter="Switch_MouseEnter" MouseLeave="Switch_MouseLeave">
+                <Canvas.RenderTransform>
+                    <ScaleTransform x:Name="Zoom2" ScaleX="1" ScaleY="1" />
+                </Canvas.RenderTransform>
+
+                <Path Stroke="Gray" StrokeThickness="3"
+                      Data="M 100,12 L 176,56 L 176,144 L 100,188 L 24,144 L 24,56 Z">
+                    <Path.Fill>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                            <GradientStop Color="White" Offset="0" />
+                            <GradientStop Color="#FFBFBFBF" Offset="1" />
+                        </LinearGradientBrush>
+                    </Path.Fill>
+                </Path>
+
+                <Ellipse Canvas.Left="50" Canvas.Top="50" Width="100" Height="100">
+                    <Ellipse.Fill>
+                        <RadialGradientBrush>
+                            <GradientStop Color="#FFF0F0F0" Offset="0" />
+                            <GradientStop Color="#FF909090" Offset="1" />
+                        </RadialGradientBrush>
+                    </Ellipse.Fill>
+                </Ellipse>
+
+                <Grid Canvas.Left="35" Canvas.Top="86" Width="130" Height="28"
+                      RenderTransformOrigin="0.5,0.5">
+                    <Grid.RenderTransform>
+                        <RotateTransform x:Name="Turn2" Angle="0" />
+                    </Grid.RenderTransform>
+                    <Rectangle Fill="LightGreen" Stroke="Green" StrokeThickness="2"
+                               RadiusX="5" RadiusY="5" />
+                    <Rectangle Width="26" Height="6" Fill="DarkRed"
+                               HorizontalAlignment="Left" Margin="8,0,0,0" />
+                </Grid>
+            </Canvas>
+        </Viewbox>
+        <Viewbox Grid.Column="2" Margin="12" Stretch="Uniform">
+            <Canvas Width="200" Height="200" Background="Transparent"
+                    RenderTransformOrigin="0.5,0.5"
+                    MouseLeftButtonDown="Switch_MouseDown"
+                    MouseEnter="Switch_MouseEnter" MouseLeave="Switch_MouseLeave">
+                <Canvas.RenderTransform>
+                    <ScaleTransform x:Name="Zoom3" ScaleX="1" ScaleY="1" />
+                </Canvas.RenderTransform>
+
+                <Path Stroke="Gray" StrokeThickness="3"
+                      Data="M 100,12 L 176,56 L 176,144 L 100,188 L 24,144 L 24,56 Z">
+                    <Path.Fill>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                            <GradientStop Color="White" Offset="0" />
+                            <GradientStop Color="#FFBFBFBF" Offset="1" />
+                        </LinearGradientBrush>
+                    </Path.Fill>
+                </Path>
+
+                <Ellipse Canvas.Left="50" Canvas.Top="50" Width="100" Height="100">
+                    <Ellipse.Fill>
+                        <RadialGradientBrush>
+                            <GradientStop Color="#FFF0F0F0" Offset="0" />
+                            <GradientStop Color="#FF909090" Offset="1" />
+                        </RadialGradientBrush>
+                    </Ellipse.Fill>
+                </Ellipse>
+
+                <Grid Canvas.Left="35" Canvas.Top="86" Width="130" Height="28"
+                      RenderTransformOrigin="0.5,0.5">
+                    <Grid.RenderTransform>
+                        <RotateTransform x:Name="Turn3" Angle="0" />
+                    </Grid.RenderTransform>
+                    <Rectangle Fill="LightGreen" Stroke="Green" StrokeThickness="2"
+                               RadiusX="5" RadiusY="5" />
+                    <Rectangle Width="26" Height="6" Fill="DarkRed"
+                               HorizontalAlignment="Left" Margin="8,0,0,0" />
+                </Grid>
+            </Canvas>
+        </Viewbox>
+    </Grid>
+</Window>
