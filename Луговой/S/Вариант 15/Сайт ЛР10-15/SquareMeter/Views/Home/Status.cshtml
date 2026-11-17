@@ -1,0 +1,20 @@
+@model StatusViewModel
+@{
+    ViewData["Title"] = Model.Title;
+}
+
+<section class="section status-page">
+    <div class="container text-center">
+        <div class="status-code">@Model.Code</div>
+        <h1>@Model.Title</h1>
+        <p class="section-lead mx-auto">@Model.Message</p>
+        <div class="d-flex flex-wrap justify-content-center gap-2 mt-4">
+            <a class="btn btn-accent btn-lg" asp-controller="Home" asp-action="Index">На главную</a>
+            <a class="btn btn-outline-dark btn-lg" asp-controller="Catalog" asp-action="Index">Открыть каталог</a>
+        </div>
+        @if (!string.IsNullOrEmpty(Model.RequestId))
+        {
+            <p class="text-muted small mt-4">Код запроса: @Model.RequestId</p>
+        }
+    </div>
+</section>

@@ -1,0 +1,98 @@
+@{
+    string controller = ViewContext.RouteData.Values["controller"]?.ToString();
+    string action = ViewContext.RouteData.Values["action"]?.ToString();
+    string Active(string c, string a = null) =>
+        controller == c && (a == null || action == a) ? " active" : "";
+}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] | Квадратный метр</title>
+    <meta name="description" content="Квадратный метр: каталог квартир, домов и коммерческой недвижимости" />
+    <link rel="icon" href="~/img/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap-icons/bootstrap-icons.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body>
+    <header class="site-header sticky-top">
+        <nav class="navbar navbar-expand-lg">
+            <div class="container">
+                <a class="navbar-brand brand" asp-controller="Home" asp-action="Index" aria-label="На главную">
+                    <span class="brand-mark">м²</span>
+                    <span class="brand-text">Квадратный<span class="brand-accent"> метр</span></span>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainMenu"
+                        aria-controls="mainMenu" aria-expanded="false" aria-label="Открыть меню">
+                    <i class="bi bi-list"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="mainMenu">
+                    <ul class="navbar-nav mx-lg-auto">
+                        <li class="nav-item"><a class="nav-link@(Active("Home", "Index"))" asp-controller="Home" asp-action="Index">Главная</a></li>
+                        <li class="nav-item"><a class="nav-link@(Active("Catalog"))" asp-controller="Catalog" asp-action="Index">Каталог</a></li>
+                        <li class="nav-item"><a class="nav-link@(Active("Home", "About"))" asp-controller="Home" asp-action="About">О проекте</a></li>
+                        <li class="nav-item"><a class="nav-link@(Active("Home", "Contacts"))" asp-controller="Home" asp-action="Contacts">Контакты</a></li>
+                    </ul>
+                    <div class="header-actions">
+                        <a class="icon-btn" asp-controller="Catalog" asp-action="Index" title="Поиск по каталогу" aria-label="Поиск"><i class="bi bi-search"></i></a>
+                        <span class="icon-btn" title="Избранное появится в следующих версиях" aria-label="Избранное"><i class="bi bi-heart"></i></span>
+                        <a class="btn btn-accent btn-sm" asp-controller="Home" asp-action="Contacts">Продать объект</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main role="main">
+        @RenderBody()
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <a class="brand brand-light" asp-controller="Home" asp-action="Index">
+                        <span class="brand-mark">м²</span>
+                        <span class="brand-text">Квадратный<span class="brand-accent"> метр</span></span>
+                    </a>
+                    <p class="footer-note mt-3">Каталог недвижимости: квартиры, новостройки, загородные дома и помещения для бизнеса в городах России.</p>
+                </div>
+                <div class="col-6 col-lg-2">
+                    <h6>Разделы</h6>
+                    <ul class="footer-links">
+                        <li><a asp-controller="Catalog" asp-action="Index">Каталог</a></li>
+                        <li><a asp-controller="Catalog" asp-action="Index" asp-route-category="new">Новостройки</a></li>
+                        <li><a asp-controller="Catalog" asp-action="Index" asp-route-category="houses">Дома</a></li>
+                        <li><a asp-controller="Catalog" asp-action="Index" asp-route-category="commercial">Коммерческая</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-lg-2">
+                    <h6>Компания</h6>
+                    <ul class="footer-links">
+                        <li><a asp-controller="Home" asp-action="About">О проекте</a></li>
+                        <li><a asp-controller="Home" asp-action="Contacts">Контакты</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4">
+                    <h6>Связаться</h6>
+                    <ul class="footer-links">
+                        <li><i class="bi bi-telephone me-2"></i>+7 (495) 000-00-00</li>
+                        <li><i class="bi bi-envelope me-2"></i>hello@kvmetr.example</li>
+                        <li><i class="bi bi-geo-alt me-2"></i>Москва, Пресненская наб., 12</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>&copy; @DateTime.Now.Year «Квадратный метр». Все права защищены.</span>
+                <span>Демонстрационный проект: объекты и контакты вымышлены.</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="~/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

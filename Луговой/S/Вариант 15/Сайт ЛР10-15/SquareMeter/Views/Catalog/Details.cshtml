@@ -1,0 +1,65 @@
+@model PropertyViewModel
+@{
+    Property p = Model.Item;
+    ViewData["Title"] = p.Title;
+}
+
+<section class="page-head">
+    <div class="container">
+        <nav aria-label="Навигационная цепочка">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Главная</a></li>
+                <li class="breadcrumb-item"><a asp-controller="Catalog" asp-action="Index">Каталог</a></li>
+                @if (Model.Category != null)
+                {
+                    <li class="breadcrumb-item"><a asp-controller="Catalog" asp-action="Index" asp-route-category="@Model.Category.Key">@Model.Category.Title</a></li>
+                }
+                <li class="breadcrumb-item active" aria-current="page">Объект № @p.Id</li>
+            </ol>
+        </nav>
+        <h1>@p.Title</h1>
+        <p class="section-lead"><i class="bi bi-geo-alt"></i> @p.City, @p.District</p>
+    </div>
+</section>
+
+<section class="section pt-4">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-lg-8">
+                <img class="rounded-photo w-100" src="~/img/@p.Image" alt="@p.Title" />
+                <div class="detail-text mt-4">
+                    <h2>Описание</h2>
+                    <p>@p.Description</p>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <aside class="price-card">
+                    @if (!string.IsNullOrEmpty(p.Badge))
+                    {
+                        <span class="prop-badge static">@p.Badge</span>
+                    }
+                    <div class="price-big">@p.PriceText</div>
+                    <div class="text-muted">@p.PricePerMeter</div>
+                    <ul class="detail-facts">
+                        <li><span>Площадь</span><strong>@p.AreaText</strong></li>
+                        <li><span>Комнаты</span><strong>@p.RoomsText</strong></li>
+                        <li><span>Этаж</span><strong>@p.Floor</strong></li>
+                        <li><span>Категория</span><strong>@(Model.Category?.Title ?? "Без категории")</strong></li>
+                    </ul>
+                    <a class="btn btn-accent btn-lg w-100" asp-controller="Home" asp-action="Contacts">Записаться на просмотр</a>
+                    <p class="small text-muted mt-3 mb-0">Демонстрационный объект: цена и адрес вымышлены.</p>
+                </aside>
+            </div>
+        </div>
+
+        <h2 class="mt-5 mb-4">Похожие предложения</h2>
+        <div class="row g-4">
+            @foreach (Property s in Model.Similar)
+            {
+                <div class="col-md-6 col-xl-4">
+                    <partial name="_PropertyCard" model="s" />
+                </div>
+            }
+        </div>
+    </div>
+</section>

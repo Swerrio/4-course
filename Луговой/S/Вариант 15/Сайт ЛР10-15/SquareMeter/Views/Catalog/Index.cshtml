@@ -1,0 +1,40 @@
+@model CatalogViewModel
+@{
+    ViewData["Title"] = "Каталог: " + Model.SelectedTitle;
+}
+
+<section class="page-head">
+    <div class="container">
+        <nav aria-label="Навигационная цепочка">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Главная</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Каталог</li>
+            </ol>
+        </nav>
+        <h1>Каталог недвижимости</h1>
+        <p class="section-lead">Раздел в разработке: сейчас доступны выбор категории и карточки объектов, поиск и фильтры появятся в следующих версиях.</p>
+    </div>
+</section>
+
+<section class="section pt-4">
+    <div class="container">
+        <div class="chips mb-4">
+            <a class="chip @(Model.SelectedKey == null ? "active" : "")" asp-controller="Catalog" asp-action="Index">Все</a>
+            @foreach (Category c in Model.Categories)
+            {
+                <a class="chip @(Model.SelectedKey == c.Key ? "active" : "")" asp-controller="Catalog" asp-action="Index" asp-route-category="@c.Key">
+                    <i class="bi @c.Icon me-1"></i>@c.Title <span class="chip-count">@c.Count</span>
+                </a>
+            }
+        </div>
+        <p class="text-muted mb-3">@Model.SelectedTitle: найдено объектов @Model.Items.Count</p>
+        <div class="row g-4">
+            @foreach (Property p in Model.Items)
+            {
+                <div class="col-md-6 col-xl-4">
+                    <partial name="_PropertyCard" model="p" />
+                </div>
+            }
+        </div>
+    </div>
+</section>

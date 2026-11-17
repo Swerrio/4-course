@@ -1,0 +1,140 @@
+@model HomeViewModel
+@{
+    ViewData["Title"] = "Недвижимость без лишних хлопот";
+}
+
+<!-- 2. Hero: заголовок, описание, кнопка, изображение и быстрый поиск -->
+<section class="hero" style="background-image: url('@Url.Content("~/img/hero.jpg")');">
+    <div class="hero-shade"></div>
+    <div class="container hero-inner">
+        <div class="row">
+            <div class="col-lg-7">
+                <span class="eyebrow eyebrow-light"><i class="bi bi-stars"></i> Объектов в каталоге: @Model.TotalCount, городов: @Model.CityCount</span>
+                <h1 class="hero-title">Найдите дом, в котором захочется остаться</h1>
+                <p class="hero-lead">Квартиры, новостройки, загородные дома и помещения для бизнеса. Проверенные документы, честные цены и сопровождение сделки до получения ключей.</p>
+                <div class="hero-actions">
+                    <a class="btn btn-accent btn-lg" asp-controller="Catalog" asp-action="Index">Смотреть каталог</a>
+                    <a class="btn btn-ghost btn-lg" asp-controller="Home" asp-action="About">Как мы работаем</a>
+                </div>
+            </div>
+        </div>
+
+        <form class="quick-search" method="get" asp-controller="Catalog" asp-action="Index">
+            <div class="qs-field">
+                <label for="qs-type">Тип недвижимости</label>
+                <select id="qs-type" name="category" class="form-select">
+                    <option value="">Все объекты</option>
+                    @foreach (Category c in Model.Categories)
+                    {
+                        <option value="@c.Key">@c.Title</option>
+                    }
+                </select>
+            </div>
+            <div class="qs-field">
+                <label for="qs-city">Город</label>
+                <select id="qs-city" class="form-select" disabled title="Фильтр по городу появится в следующих версиях">
+                    <option>Любой город</option>
+                </select>
+            </div>
+            <div class="qs-field">
+                <label for="qs-budget">Бюджет</label>
+                <select id="qs-budget" class="form-select" disabled title="Фильтр по цене появится в следующих версиях">
+                    <option>Без ограничений</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-accent qs-submit"><i class="bi bi-search me-2"></i>Найти</button>
+        </form>
+    </div>
+</section>
+
+<!-- 3. Преимущества -->
+<section class="section">
+    <div class="container">
+        <div class="section-head text-center">
+            <span class="eyebrow">Почему мы</span>
+            <h2>Покупка недвижимости без стресса</h2>
+            <p class="section-lead">Берём на себя проверку, переговоры и оформление, чтобы вы занимались выбором, а не бумагами.</p>
+        </div>
+        <div class="row g-4">
+            @foreach (Advantage a in Model.Advantages)
+            {
+                <div class="col-sm-6 col-lg-3">
+                    <div class="feature-card h-100">
+                        <span class="feature-icon"><i class="bi @a.Icon"></i></span>
+                        <h3>@a.Title</h3>
+                        <p>@a.Text</p>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+
+<!-- 4. Категории -->
+<section class="section section-soft">
+    <div class="container">
+        <div class="section-head d-flex flex-wrap justify-content-between align-items-end gap-3">
+            <div>
+                <span class="eyebrow">Категории</span>
+                <h2>Что вы ищете?</h2>
+            </div>
+            <a class="link-more" asp-controller="Catalog" asp-action="Index">Весь каталог <i class="bi bi-arrow-right"></i></a>
+        </div>
+        <div class="row g-4">
+            @foreach (Category c in Model.Categories)
+            {
+                <div class="col-sm-6 col-lg-3">
+                    <a class="cat-card" asp-controller="Catalog" asp-action="Index" asp-route-category="@c.Key">
+                        <img src="~/img/@c.Image" alt="@c.Title" loading="lazy" />
+                        <span class="cat-shade"></span>
+                        <span class="cat-text">
+                            <span class="cat-icon"><i class="bi @c.Icon"></i></span>
+                            <strong>@c.Title</strong>
+                            <small>@c.Description</small>
+                            <small class="cat-count">Объектов: @c.Count</small>
+                        </span>
+                    </a>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+
+<!-- 5. Популярные объекты -->
+<section class="section">
+    <div class="container">
+        <div class="section-head d-flex flex-wrap justify-content-between align-items-end gap-3">
+            <div>
+                <span class="eyebrow">Популярное</span>
+                <h2>Объекты, которые смотрят чаще всего</h2>
+            </div>
+            <a class="link-more" asp-controller="Catalog" asp-action="Index">Все предложения <i class="bi bi-arrow-right"></i></a>
+        </div>
+        <div class="row g-4">
+            @foreach (Property p in Model.Featured)
+            {
+                <div class="col-md-6 col-xl-3">
+                    <partial name="_PropertyCard" model="p" />
+                </div>
+            }
+        </div>
+    </div>
+</section>
+
+<!-- 6. Призыв к действию -->
+<section class="section pt-0">
+    <div class="container">
+        <div class="cta">
+            <div class="row align-items-center g-4">
+                <div class="col-lg-8">
+                    <h2>Продаёте квартиру или дом?</h2>
+                    <p>Оценим объект за один день, сделаем профессиональные фотографии и разместим его в каталоге бесплатно.</p>
+                </div>
+                <div class="col-lg-4 text-lg-end">
+                    <a class="btn btn-accent btn-lg" asp-controller="Home" asp-action="Contacts">Оставить заявку</a>
+                    <a class="btn btn-ghost btn-lg mt-2 mt-sm-0 ms-sm-2" asp-controller="Catalog" asp-action="Index">В каталог</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,22 @@
+@model Property
+<article class="prop-card h-100">
+    <a class="prop-photo" asp-controller="Catalog" asp-action="Details" asp-route-id="@Model.Id">
+        <img src="~/img/@Model.Image" alt="@Model.Title" loading="lazy" />
+        @if (!string.IsNullOrEmpty(Model.Badge))
+        {
+            <span class="prop-badge">@Model.Badge</span>
+        }
+    </a>
+    <div class="prop-body">
+        <div class="prop-price">@Model.PriceText</div>
+        <h3 class="prop-title">
+            <a asp-controller="Catalog" asp-action="Details" asp-route-id="@Model.Id">@Model.Title</a>
+        </h3>
+        <div class="prop-place"><i class="bi bi-geo-alt"></i> @Model.City, @Model.District</div>
+        <ul class="prop-facts">
+            <li><i class="bi bi-arrows-angle-expand"></i>@Model.AreaText</li>
+            <li><i class="bi bi-door-open"></i>@Model.RoomsText</li>
+            <li><i class="bi bi-layers"></i>@Model.Floor</li>
+        </ul>
+    </div>
+</article>

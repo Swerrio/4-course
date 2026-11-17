@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <!--
+    .NET Core 3.1: последняя LTS-версия, которую открывает и собирает
+    Visual Studio 2019 (16.4 и новее). Сторонние NuGet-пакеты не используются:
+    Bootstrap 5, иконки и шрифты лежат в wwwroot, интернет для сборки не нужен.
+  -->
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <RootNamespace>SquareMeter</RootNamespace>
+    <LangVersion>8.0</LangVersion>
+    <CheckEolTargetFramework>false</CheckEolTargetFramework>
+    <!--
+      Если на компьютере нет среды .NET Core 3.1 (например, стоит только
+      .NET 8 или .NET 10), сайт запускается на более новой версии.
+      Где 3.1 установлена (Visual Studio 2019), используется она.
+    -->
+    <RollForward>Major</RollForward>
+  </PropertyGroup>
+
+</Project>

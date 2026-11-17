@@ -1,0 +1,83 @@
+@{
+    ViewData["Title"] = "Контакты";
+}
+
+<section class="page-head">
+    <div class="container">
+        <nav aria-label="Навигационная цепочка">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Главная</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Контакты</li>
+            </ol>
+        </nav>
+        <h1>Контакты</h1>
+        <p class="section-lead">Ответим на вопросы о покупке, продаже и аренде в течение рабочего дня.</p>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-lg-5">
+                <div class="contact-card">
+                    <div class="contact-row">
+                        <span class="feature-icon"><i class="bi bi-telephone"></i></span>
+                        <div><h3>Телефон</h3><p>+7 (495) 000-00-00<br /><small>ежедневно с 9:00 до 21:00</small></p></div>
+                    </div>
+                    <div class="contact-row">
+                        <span class="feature-icon"><i class="bi bi-envelope"></i></span>
+                        <div><h3>Почта</h3><p>hello@kvmetr.example<br /><small>для заявок и вопросов</small></p></div>
+                    </div>
+                    <div class="contact-row">
+                        <span class="feature-icon"><i class="bi bi-geo-alt"></i></span>
+                        <div><h3>Офис</h3><p>Москва, Пресненская набережная, 12<br /><small>м. «Выставочная», 5 минут пешком</small></p></div>
+                    </div>
+                    <div class="contact-row">
+                        <span class="feature-icon"><i class="bi bi-clock"></i></span>
+                        <div><h3>Часы работы</h3><p>Пн–Пт 9:00–20:00<br /><small>Сб–Вс 10:00–18:00</small></p></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-7">
+                <div class="form-card">
+                    <h2>Оставьте заявку</h2>
+                    <p class="text-muted">Менеджер перезвонит и подберёт варианты. Форма демонстрационная: данные никуда не отправляются.</p>
+                    <form id="contactForm" class="needs-validation" novalidate>
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label class="form-label" for="cf-name">Имя</label>
+                                <input class="form-control" id="cf-name" maxlength="60" required />
+                                <div class="invalid-feedback">Укажите имя.</div>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label" for="cf-phone">Телефон</label>
+                                <input class="form-control" id="cf-phone" type="tel" maxlength="20" required
+                                       pattern="[0-9+\(\)\- ]{6,20}" placeholder="+7 900 000-00-00" />
+                                <div class="invalid-feedback">Телефон: цифры, пробелы и знаки + - ( ).</div>
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label" for="cf-topic">Тема</label>
+                                <select class="form-select" id="cf-topic">
+                                    <option>Хочу купить</option>
+                                    <option>Хочу продать</option>
+                                    <option>Коммерческая недвижимость</option>
+                                    <option>Другой вопрос</option>
+                                </select>
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label" for="cf-text">Сообщение</label>
+                                <textarea class="form-control" id="cf-text" rows="4" maxlength="1000"></textarea>
+                            </div>
+                            <div class="col-12">
+                                <button class="btn btn-accent btn-lg" type="submit">Отправить заявку</button>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="formDone" class="alert alert-success mt-3 d-none" role="status">
+                        <i class="bi bi-check-circle me-2"></i>Спасибо! Заявка принята. Это демонстрационная форма, данные не отправлялись.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

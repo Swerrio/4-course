@@ -1,0 +1,41 @@
+﻿Сайт «Квадратный метр» (ЛР 10, далее ЛР 11–15 в этом же проекте)
+
+Что нужно
+  Visual Studio 2019 версии 16.4 или новее с нагрузкой
+  «ASP.NET и разработка веб-приложений» (в ней есть .NET Core 3.1).
+  Интернет не нужен: Bootstrap 5, иконки и шрифты лежат в wwwroot,
+  NuGet-пакеты не используются.
+
+Запуск
+  1. Открыть SquareMeter.sln.
+  2. Нажать F5 (или Ctrl+F5).
+  3. Сайт сам откроет браузер с адресом http://localhost:5080
+     (порт задан в appsettings.json, браузер открывает Program.cs,
+     поэтому это работает в любой версии Visual Studio).
+     Окно консоли не закрывать: это работающий сервер сайта.
+     Используется встроенный сервер Kestrel и обычный http,
+     поэтому не нужны IIS Express и сертификат https.
+
+Если на компьютере нет .NET Core 3.1 (дома стоит только .NET 8 или 10)
+  Ничего ставить не нужно: в проекте включён RollForward=Major,
+  и сайт сам запускается на более новой версии .NET.
+
+Если Visual Studio 2019 пишет, что .NET Core 3.1 не установлен
+  Установить в Visual Studio Installer: Изменить > Отдельные
+  компоненты > «Среда выполнения .NET Core 3.1» (или пакет SDK 3.1).
+  Либо установить .NET Core 3.1 SDK с сайта Microsoft.
+
+Страницы
+  /                 главная
+  /Catalog          каталог (можно ?category=flats, new, houses, commercial)
+  /catalog/1 … /6   страница объекта
+  /Home/About       о проекте
+  /Home/Contacts    контакты и форма заявки (данные никуда не отправляются)
+  любой другой адрес показывает страницу 404
+
+Где что лежит
+  Controllers   HomeController, CatalogController
+  Models        Property, Category, модели страниц
+  Data          DemoCatalog: демонстрационные объекты (в ЛР 10 без базы данных)
+  Views         представления, общий макет Views/Shared/_Layout.cshtml
+  wwwroot       css/site.css, js/site.js, img, fonts, lib (Bootstrap)
